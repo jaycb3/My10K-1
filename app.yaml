@@ -1,0 +1,20 @@
+runtime: python27
+api_version: 1
+threadsafe: true
+
+
+handlers:
+- url: /static
+  static_dir: static
+- url: /js
+  static_dir: static
+- url: /.*
+  script: main.app
+
+
+env_variables:
+  # Replace with your Firebase project ID.
+  FIREBASE_PROJECT_ID: 'lc101-jcb'
+libraries:
+- name: jinja2
+  version: latest

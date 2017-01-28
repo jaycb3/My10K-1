@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<title>My10K</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Raleway|Source+Code+Pro" rel="stylesheet">
+<link href="static/styles.css" type="text/css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+<script src="static/main.js"></script>
+<body>
+
+<!-- Side Navigation -->
+<nav class="w3-sidenav w3-white w3-card-2 w3-animate-left" style="display:none" id="mySidenav">
+  <h1 class="w3-xxxlarge w3-text-teal">Side Navigation</h1>
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-closenav w3-xxxlarge w3-text-theme">Close <i class="fa fa-remove"></i></a>
+  <a href="javascript:void(0)">Home</a>
+  <a href="javascript:void(0)">Log In</a>
+  <a href="javascript:void(0)">Register</a>
+
+</nav>
+
+<!-- Header -->
+<header class="w3-title w3-medium w3-wide w3-theme w3-padding" id="myHeader">
+  <i onclick="w3_open()" class="fa fa-bars w3-xlarge w3-opennav"></i>
+  <div class="w3-center">
+  <h1 class="w3-xxlarge w3-animate-right">My10K</h1>
+  <h4 class="w3-text-orange w3-padding-0">Productivity Tracker</h4>
+    <div class="w3-padding-0">
+     <p class="w3-show">Welcome {{ unn }}!</p>
+  </div>
+</header>
+<div class="w3-row-padding w3-center w3-margin-top">
+<div class="w3-third">
+  <div class="w3-card-8 w3-padding-top" style="min-height:400px">
+  <h4>Organize Your Learning</h4><br>
+  <i class="fa fa-calendar w3-margin-bottom w3-text-orange" style="font-size:90px;"></i>
+  <p class="w3-medium">Easily track your studies in real time, using <strong><em>tag-and-track</em></strong></p>
+  <p class="w3-medium">View your progress in a clean, understandable format.</p>
+  </div>
+</div>
+<div class="w3-third">
+	<div class="w3-card-8 w3-padding-top" style="min-height: 400px">
+	<h4>Tag your favorite learning sites.</h4><br>
+	<i class="fa fa-flag-o w3-margin-bottom w3-text-orange" style="font-size: 90px;"></i>
+	<p class="w3-medium">Manage all online learning resources in one spot.</p>
+	<p class="w3-medium">Set learning goals and receive customizable notifications.</p>
+	</div>
+</div>
+<div class="w3-third">
+	<div class="w3-card-8 w3-padding-top" style="min-height: 400px">
+	<h4>Track your learning progress hands-free</h4><br>
+	<i class="fa fa-bar-chart w3-margin-bottom w3-text-orange" style="font-size: 90px;"></i>
+	<p class="w3-medium">Simply tag a website as a learning resource and let the app do the rest.</p>
+	<p class="w3-medium">Just check your my10k userpage to view your progress.  Additional viewing mechanisms coming in the near future.</p>
+	</div>
+</div>
+</div>
+<script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+
+</body>
+<footer class="w3-container w3-theme-dark w3-padding-16">
+  <h3>My10K</h3>
+  <div style="position:relative;bottom:55px;" class="w3-tooltip w3-right">
+    <span class="w3-text w3-theme-light w3-padding">Go To Top</span> 
+    <a class="w3-text-white" href="#myHeader"><span class="w3-xlarge">
+    <i class="fa fa-chevron-circle-up"></i></span></a>
+</footer>
+
+<!-- Script for Sidenav, Tabs, Accordions, Progress bars and slideshows -->
+<script>
+// Side navigation
+function w3_open() {
+    var x = document.getElementById("mySidenav");
+    x.style.width = "100%";
+    x.style.textAlign = "center";
+    x.style.fontSize = "50px";
+    x.style.paddingTop = "10%";
+    x.style.display = "block";
+}
+function w3_close() {
+    document.getElementById("mySidenav").style.display = "none";
+}
+
+// Tabs
+function openCity(evt, cityName) {
+  var i;
+  var x = document.getElementsByClassName("city");
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";
+  }
+  var activebtn = document.getElementsByClassName("testbtn");
+  for (i = 0; i < x.length; i++) {
+      activebtn[i].className = activebtn[i].className.replace(" w3-dark-grey", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " w3-dark-grey";
+}
+
+//var mybtn = document.getElementsByClassName("testbtn")[0];
+//mybtn.click();
+
+// Accordions
+function myAccFunc(id) {
+    var x = document.getElementById(id);
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+        x.previousElementSibling.className += " w3-dark-grey";
+    } else {
+        x.className = x.className.replace(" w3-show", "");
+        x.previousElementSibling.className =
+        x.previousElementSibling.className.replace(" w3-dark-grey", "");
+    }
+}
+
+// Slideshows
+var slideIndex = 1;
+
+function plusDivs(n) {
+slideIndex = slideIndex + n;
+showDivs(slideIndex);
+}
+
+function showDivs(n) {
+  var x = document.getElementsByClassName("mySlides");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length} ;
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";
+  }
+  x[slideIndex-1].style.display = "block";
+}
+
+//showDivs(1);
+
+// Progress Bars
+function move() {
+  var elem = document.getElementById("myBar");
+  var width = 1;
+  var id = setInterval(frame, 10);
+  function frame() {
+    if (width == 100) {
+      clearInterval(id);
+    } else {
+      width++;
+      elem.style.width = width + '%';
+      document.getElementById("demoprgr").innerHTML = width * 1  + '%';
+    }
+  }
+}
+</script>
+
+</body>
+</html>
