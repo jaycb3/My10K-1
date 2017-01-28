@@ -60,6 +60,15 @@ class TestPage(Handler):
             for i in q:
                 self.response.write(i.subject)
 
+class UserPage(Handler):
+    def get(self):
+        user = users.get_current_user()
+        if user:
+            q = RecordByUser.query(RecordByUser.user_id == user.user_id())
+            self.render('user.html',q=q, unn=user)
+        else:
+            self.redirect('/login')
+
 
 
 
@@ -75,5 +84,6 @@ app = webapp2.WSGIApplication([
                                     ('/', HomePage),
                                     ('/home', HomePage),
                                     ('/test', TestPage),
+                                    ('/user', UserPage),
                                     ('/login', LogInPage),
 ])
