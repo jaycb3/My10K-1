@@ -33,15 +33,24 @@
 {% for record in q %}
 <div class="w3-third">
   <div class="w3-card-8 w3-padding-top" style="min-height:400px">
+          <form id="record-form">
+                 <ul style='list-style:none;display:inline;margin-left: -2em;'>
+                          <li style='display:inline'><button class="w3-btn-floating fa fa-edit" href="/edit"></button></li>
+                          <li style='display:inline'><button class="w3-btn-floating fa fa-minus" href="/delete"></button></li>
+                          <li style='display:inline'><button class="w3-btn-floating fa fa-plus" href="/add-hyperlink"></button></li>
+                  </ul>
+          </form>
   <h3>{{ record.subject }}</h3>
   <h4>{{ record.links }}</h4>
   <h4>{{ record.comments }}</h4>
   <h4>{{ record.created }}</h4>
-  </div>
-</div>
-{% endfor %}
 
-</div>
+ </div>
+ </div>
+ {% endfor %}
+ </div>
+
+
 <script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
 
 </body>
