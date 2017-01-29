@@ -4,7 +4,7 @@
 import webapp2
 import jinja2
 import os
-from data import RecordByUser
+from data import RecordByUser, AddRecord
 
 from google.appengine.api import users
 
@@ -64,6 +64,7 @@ class UserPage(Handler):
     def get(self):
         user = users.get_current_user()
         if user:
+            AddRecord("Javascript")
             q = RecordByUser.query(RecordByUser.user_id == user.user_id())
             self.render('user.html',q=q, unn=user)
         else:
