@@ -145,3 +145,10 @@
   configureFirebaseLoginWidget();
 
 });
+
+
+
+function onDelete(subject) {
+        form = document.getElementById(subject);
+        console.log(form);
+}

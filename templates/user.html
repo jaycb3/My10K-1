@@ -33,11 +33,11 @@
 {% for record in q %}
 <div class="w3-third">
   <div class="w3-card-8 w3-padding-top" style="min-height:400px">
-          <form id="record-form">
+          <form id="{{ record.subject }}">
                  <ul style='list-style:none;display:inline;margin-left: -2em;'>
-                          <li style='display:inline'><button class="w3-btn-floating-large fa fa-edit" href="/edit"></button></li>
-                          <li style='display:inline'><button class="w3-btn-floating-large fa fa-minus" href="/delete"></button></li>
-                          <li style='display:inline'><button class="w3-btn-floating-large fa fa-plus" href="/add-hyperlink"></button></li>
+                          <li style='display:inline'><button id="btn-edit-record" class="w3-btn-floating-large fa fa-edit" href="/edit"></button></li>
+                          <li style='display:inline'><button id="btn-delete-record" class="w3-btn-floating-large fa fa-minus" href="/delete" onclick='onDelete({{record.subject}})'></button></li>
+                          <li style='display:inline'><button id="btn-add-link" class="w3-btn-floating-large fa fa-plus" href="/add-hyperlink"></button></li>
                   </ul>
           </form>
   <h3>Subject: {{ record.subject }}</h3>

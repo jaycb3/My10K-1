@@ -24,3 +24,12 @@ def AddRecord(subject):
 
         record = RecordByUser(user_id=user, subject=subject)
         record.put()
+
+def DeleteRecord(subject):
+    user = users.get_current_user().user_id()
+    record = RecordByUser.query(ndb.AND(RecordByUser.user_id == user),
+                                                                      (RecordByUser.subject == subject))
+
+    if record.get():
+        record_key = record.get().key
+        record_key.delete()
