@@ -73,8 +73,8 @@ class UserPage(Handler):
         else:
             self.redirect('/login')
 
-        def post(self):
-            pass
+    def post(self):
+        pass
 
 class DeleteRecordHandler(Handler):
     def post(self):
@@ -111,6 +111,7 @@ app = webapp2.WSGIApplication([
                                     ('/', HomePage),
                                     ('/home', HomePage),
                                     ('/delete', DeleteRecordHandler),
+                                    ('/addLink', AddRecordHandler),
                                     ('/test', TestPage),
                                     ('/user', UserPage),
                                     ('/login', LogInPage),

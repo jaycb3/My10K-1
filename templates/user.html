@@ -4,8 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css?family=Raleway|Source+Code+Pro" rel="stylesheet">
-<link href="static/styles.css" type="text/css" rel="stylesheet">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link href="static/styles.css" type="text/css" rel="stylesheet">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="static/main.js"></script>
 <body>
 
@@ -33,17 +41,18 @@
 {% for record in q %}
 <div class="w3-third">
   <div class="w3-card-8 w3-padding-top" style="min-height:400px">
-          <form id="{{ record.subject }}" method="post">
+          <form id="{{ record.subject }}" method="get">
                  <ul style='list-style:none;display:inline;margin-left: -2em;'>
-                          <li style='display:inline'><button formaction="/edit?='{{record.subject}}'" id="btn-edit-record" class="w3-btn-floating-large fa fa-edit" onclick='onEdit({{record.subject}})'></button></li>
-                          <li style='display:inline'><button name="{{record.subject}}" formmethod='post' formaction="/delete?='{{record.subject}}'" id="btn-delete-record" class="w3-btn-floating-large fa fa-minus" onclick='onDelete({{record.subject}})'></button></li>
-                          <li style='display:inline'><button formaction="/addLink?='{{record.subject}}'" id="btn-add-link" class="w3-btn-floating-large fa fa-plus" onclick='onAddLink({{record.subject}})'></button></li>
+                          <li style='display:inline'><button formmethod='post' formaction="/edit?='{{record.subject}}'" id="btn-edit-record" class="w3-btn-floating-large fa fa-edit"></button></li>
+                          <li style='display:inline'><button formmethod='post' formaction="/delete?='{{record.subject}}'" id="btn-delete-record" class="w3-btn-floating-large fa fa-minus"></button></li>
+                          <li style='display:inline'><button type="button" id="btn-add-link" class="w3-btn-floating-large fa fa-plus" data-toggle="modal" data-target="#addLinkModal"></button></li>
                   </ul>
           </form>
   <h3>Subject: {{ record.subject }}</h3>
   <h4>Links: {{ record.links }}</h4>
   <h4>Comments: {{ record.comments }}</h4>
   <h4>Created: {{ record.created }}</h4>
+  <h4>Last Modified: {{ record.last_modified }}</h4>
 
  </div>
  </div>
@@ -51,20 +60,26 @@
  </div>
 
 
+<!-- Modal -->
+<div id="addLinkModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
 
-<script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
 
-</body>
-<footer class="w3-container w3-theme-dark w3-padding-16">
-  <h3>My10K</h3>
-  <div style="position:relative;bottom:55px;" class="w3-tooltip w3-right">
-    <span class="w3-text w3-theme-light w3-padding">Go To Top</span> 
-    <a class="w3-text-white" href="#myHeader"><span class="w3-xlarge">
-    <i class="fa fa-chevron-circle-up"></i></span></a>
-    </div>
-</footer>
-
-<!-- Script for Sidenav, Tabs, Accordions, Progress bars and slideshows -->
+  </div>
+</div>
 <script>
 // Side navigation
 function w3_open() {
@@ -145,20 +160,7 @@ function move() {
     }
   }
 };
-function onDelete(subject) {
-        form = document.getElementById(subject);
-        console.log(form);
-};
 
-function onEdit(subject) {
-        form = document.getElementById(subject);
-        console.log(form);
-};
-
-function onAddLink(subject) {
-        form = document.getElementById(subject);
-        console.log(form);
-};
 
 </script>
 
