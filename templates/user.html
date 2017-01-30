@@ -42,23 +42,23 @@
 <div class="w3-third">
   <div class="w3-card-8 w3-padding-top" style="min-height:400px">
           <form id="{{ record.subject }}" method="get">
-                 <ul style='list-style:none;display:inline;margin-left: -2em;'>
+                 <ul style='list-style:none;display:inline;margin-left: -2.2em;'>
                           <li style='display:inline'><button formmethod='post' formaction="/edit?='{{record.subject}}'" id="btn-edit-record" class="w3-btn-floating-large fa fa-edit"></button></li>
                           <li style='display:inline'><button formmethod='post' formaction="/delete?='{{record.subject}}'" id="btn-delete-record" class="w3-btn-floating-large fa fa-minus"></button></li>
                           <li style='display:inline'><button type="button" id="btn-add-link" class="w3-btn-floating-large fa fa-plus" data-toggle="modal" data-target="#addLinkModal"></button></li>
                   </ul>
           </form>
-  <h3>Subject: {{ record.subject }}</h3>
-  <h4>Links: {{ record.links }}</h4>
-  <h4>Comments: {{ record.comments }}</h4>
-  <h4>Created: {{ record.created }}</h4>
-  <h4>Last Modified: {{ record.last_modified }}</h4>
+          <h3>Subject: {{ record.subject }}</h3>
+          <h4>Links: {{ record.links }}</h4>
+          <h4>Comments: {{ record.comments }}</h4>
+          <h4>Created: {{ record.created }}</h4>
+          <h4>Last Modified: {{ record.last_modified }}</h4>
 
- </div>
+  </div>
  </div>
  {% endfor %}
  </div>
-
+</div>
 
 <!-- Modal -->
 <div id="addLinkModal" class="modal fade" role="dialog">
@@ -80,6 +80,13 @@
 
   </div>
 </div>
+<footer class="w3-container w3-theme-dark w3-padding-16">
+  <h3>My10K</h3>
+  <div style="position:relative;bottom:55px;" class="w3-tooltip w3-right">
+    <span class="w3-text w3-theme-light w3-padding">Go To Top</span> 
+    <a class="w3-text-white" href="#myHeader"><span class="w3-xlarge">
+    <i class="fa fa-chevron-circle-up"></i></span></a>
+</footer>
 <script>
 // Side navigation
 function w3_open() {

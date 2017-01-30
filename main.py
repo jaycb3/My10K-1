@@ -46,10 +46,10 @@ class LogInPage(Handler):
         if user:
             nickname = user.nickname()
             logout_url = users.create_logout_url('/')
-            greeting = 'Welcome, {}! (<a href="{}">sign out</a>)'.format(nickname, logout_url)
+            greeting = 'Welcome, {}! (<a href="{}">sign out</a>)'.format(nickname.title(), logout_url)
             self.response.write('<html><body>{}</html>'.format(greeting))
         else:
-            login_url = users.create_login_url('/')
+            login_url = users.create_login_url('/user')
             greeting = '<a href="{}">Sign in</a>'.format(login_url)
             self.response.write('<html><body>{}</body></html>'.format(greeting))
 
@@ -69,7 +69,7 @@ class UserPage(Handler):
         user = users.get_current_user()
         if user:
             q = RecordByUser.query(RecordByUser.user_id == user.user_id())
-            self.render('user.html',q=q, unn=user)
+            self.render('user.html',q=q, unn=user.nickname().title())
         else:
             self.redirect('/login')
 
