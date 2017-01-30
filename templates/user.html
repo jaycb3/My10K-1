@@ -33,11 +33,11 @@
 {% for record in q %}
 <div class="w3-third">
   <div class="w3-card-8 w3-padding-top" style="min-height:400px">
-          <form id="{{ record.subject }}">
+          <form id="{{ record.subject }}" method="post">
                  <ul style='list-style:none;display:inline;margin-left: -2em;'>
-                          <li style='display:inline'><button id="btn-edit-record" class="w3-btn-floating-large fa fa-edit" href="/edit"></button></li>
-                          <li style='display:inline'><button id="btn-delete-record" class="w3-btn-floating-large fa fa-minus" href="/delete" onclick='onDelete({{record.subject}})'></button></li>
-                          <li style='display:inline'><button id="btn-add-link" class="w3-btn-floating-large fa fa-plus" href="/add-hyperlink"></button></li>
+                          <li style='display:inline'><button formaction="/edit?='{{record.subject}}'" id="btn-edit-record" class="w3-btn-floating-large fa fa-edit" onclick='onEdit({{record.subject}})'></button></li>
+                          <li style='display:inline'><button name="{{record.subject}}" formmethod='post' formaction="/delete?='{{record.subject}}'" id="btn-delete-record" class="w3-btn-floating-large fa fa-minus" onclick='onDelete({{record.subject}})'></button></li>
+                          <li style='display:inline'><button formaction="/addLink?='{{record.subject}}'" id="btn-add-link" class="w3-btn-floating-large fa fa-plus" onclick='onAddLink({{record.subject}})'></button></li>
                   </ul>
           </form>
   <h3>Subject: {{ record.subject }}</h3>
@@ -51,6 +51,7 @@
  </div>
 
 
+
 <script src="https://www.gstatic.com/firebasejs/3.6.6/firebase.js"></script>
 
 </body>
@@ -60,6 +61,7 @@
     <span class="w3-text w3-theme-light w3-padding">Go To Top</span> 
     <a class="w3-text-white" href="#myHeader"><span class="w3-xlarge">
     <i class="fa fa-chevron-circle-up"></i></span></a>
+    </div>
 </footer>
 
 <!-- Script for Sidenav, Tabs, Accordions, Progress bars and slideshows -->
@@ -142,7 +144,22 @@ function move() {
       document.getElementById("demoprgr").innerHTML = width * 1  + '%';
     }
   }
-}
+};
+function onDelete(subject) {
+        form = document.getElementById(subject);
+        console.log(form);
+};
+
+function onEdit(subject) {
+        form = document.getElementById(subject);
+        console.log(form);
+};
+
+function onAddLink(subject) {
+        form = document.getElementById(subject);
+        console.log(form);
+};
+
 </script>
 
 </body>

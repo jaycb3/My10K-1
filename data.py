@@ -8,6 +8,7 @@ class RecordByUser(ndb.Model):
     user_id = ndb.StringProperty(required=True)
     subject = ndb.StringProperty(required=True)
     created = ndb.DateTimeProperty(auto_now_add=True)
+    last_modified = ndb.DateTimeProperty(auto_now=True)
     comments = ndb.StringProperty()
     links = ndb.StringProperty()
 

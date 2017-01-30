@@ -3,7 +3,9 @@
 
 import webapp2
 import jinja2
+import time
 import os
+import re
 from data import RecordByUser, AddRecord, DeleteRecord
 
 from google.appengine.api import users
@@ -56,6 +58,8 @@ class TestPage(Handler):
         user = users.get_current_user()
         if user:
             record = RecordByUser(subject="CS", user_id=user.user_id())
+            record.put()
+            time.sleep(1)
             q = RecordByUser.query(RecordByUser.user_id == user.user_id())
             for i in q:
                 self.response.write(i.subject)
@@ -68,6 +72,27 @@ class UserPage(Handler):
             self.render('user.html',q=q, unn=user)
         else:
             self.redirect('/login')
+
+        def post(self):
+            pass
+
+class DeleteRecordHandler(Handler):
+    def post(self):
+        req = str(self.request)
+        val = re.search("\'(\w+)\'",req)
+        subject = val.groups()[0]
+        DeleteRecord(subject)
+        time.sleep(1)
+        self.redirect('/user')
+
+class AddRecordHandler(Handler):
+    def post(self):
+        pass
+
+
+    def get(self):
+        pass
+
 
 
 
@@ -85,6 +110,7 @@ class UserPage(Handler):
 app = webapp2.WSGIApplication([
                                     ('/', HomePage),
                                     ('/home', HomePage),
+                                    ('/delete', DeleteRecordHandler),
                                     ('/test', TestPage),
                                     ('/user', UserPage),
                                     ('/login', LogInPage),

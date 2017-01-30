@@ -151,4 +151,14 @@
 function onDelete(subject) {
         form = document.getElementById(subject);
         console.log(form);
-}
+};
+
+function onEdit(subject) {
+        form = document.getElementById(subject);
+        console.log(form);
+};
+
+function onAddLink(subject) {
+        form = document.getElementById(subject);
+        console.log(form);
+};
